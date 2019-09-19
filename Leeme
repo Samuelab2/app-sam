@@ -1,0 +1,11 @@
+Lo que tienes que hacer es :
+(1) Mostrar los datos del archivo , "datos.json" en una tabla hecha con bootstrap (todo el diseño debe hacerse orientado a bootstrap, crea en la carpeta media/css un archivo llamado main.css para que pongas ahi tus styles)
+(2) En la tabla pornerle una opcion de eliminar y editar  
+(3) Cundo se precione la opcion de eliminar , que elimine la la fila seleccionada de la tabla
+(4) Cuando se precione editar , que cree una formulario para poder editar el (nombre,apellido,edad) la fila que se selecciono 
+(5) Hacer un boton para agregar una nueva fila a la tabla , al precionarlo que te lleve a un formulario donde puedas agregar el (nombre,apellido,edad) "puede ser la mismo del editar" 
+(6) Validar los campos de (nombre,apellido) para un maximo de caracteres de 45 y solo se puede poner texto, y el de (edad) a un maximo de 3 caracteres y que solo se pueda poner numero 
+
+
+cualquier vaina me preguntas wn .
+es un proyecto que haciendo esto puedes trabajar de programador xD
