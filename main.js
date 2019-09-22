@@ -1,9 +1,13 @@
+fetch('datos.json', {
+	method: "GET",
+})
+	.then(response => response.json())
+	.then(data => createTable(data))
+
 let table = document.getElementById("table")
 
-const addButton = document.getElementById("agregar")
-
 const createTable = data => {
-	
+
 	// EXTRACT VALUE FOR HTML HEADER. 
 	let col = [];
 	for (let i = 0; i < data.length; i++) {
@@ -13,7 +17,7 @@ const createTable = data => {
 			}
 		}
 	}
-	
+
 	// CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 	let tr = table.insertRow(-1);
 	for (let i = 0; i < col.length; i++) {
@@ -21,143 +25,90 @@ const createTable = data => {
 		th.innerHTML = col[i];
 		tr.appendChild(th);
 	}
-	
+
 	// ADD JSON DATA TO THE TABLE AS ROWS.
 	for (let i = 0; i < data.length; i++) {
 		tr = table.insertRow(-1);
-		
 		for (let j = 0; j < col.length; j++) {
 			let tabCell = tr.insertCell(-1);
-			let input = document.createElement("input")
-			tabCell.appendChild(input)
-			input.type = "text"
-			input.value = data[i][col[j]];
-			input.classList.add(`${col[j]}`)
-			input.disabled = true;
-			// tabCell.innerHTML = data[i][col[j]];
+			table.appendChild(tr)
+			tabCell.innerHTML = data[i][col[j]];
 		}
 	}
-	
-	// Creating the delete buttons
-	for (let i = 1; i < table.rows.length; i++) {
-		let x = document.createElement("input")
-		table.rows[i].insertCell(-1).appendChild(x)
-		x.type = "button"
-		x.value = "eliminar"
-		x.onclick = function deleteRows(r) {
-			let i = this.parentNode.parentNode.rowIndex;
-			table.deleteRow(i);
-		}
-	}
+	selectedRowToInput();
+}
 
-	//creating edit button
-	for (let i = 1; i < table.rows.length; i++) {
-		//creating saving button
-		let c = document.createElement("input")
-		c.type = "button"
-		c.value = "guardar"
-		c.classList.add("hide")
-		
-		//creating edit button
-		let z = document.createElement("input")
-		
-		table.rows[i].insertCell(-1).appendChild(z)
-		z.type = "button"
-		z.value = "editar"
-		z.onclick = function editRows(r) {
-			let p = this.parentNode.parentNode.rowIndex;
-			let h = table.rows[p].querySelectorAll("[type=text]");
-			for (let i = 0; i < h.length; i++) {
-				h[i].disabled = false;
-				h[i].classList.remove("nombres", "apellidos", "edad")
-				c.classList.remove("hide")
-				z.classList.add("hide")
-			}
-		}
-		
-		table.rows[i].insertCell(-1).appendChild(c)
-		c.onclick = function blockRows(r) {
-			let p = this.parentNode.parentNode.rowIndex;
-			let h = table.rows[p].querySelectorAll("[type=text]");
-			for (let i = 0; i < h.length; i++) {
-				h[i].disabled = true;
-				h[i].classList.add("nombres", "apellidos", "edad")
-				c.classList.add("hide")
-				z.classList.remove("hide")
-			}
-		}
+let rIndex;
+
+// check the empty input
+const checkEmptyInput = () => {
+	let isEmpty = false,
+		fname = document.getElementById("fname").value,
+		lname = document.getElementById("lname").value,
+		age = document.getElementById("age").value;
+
+	if (fname === "") {
+		alert("First Name Connot Be Empty");
+		isEmpty = true;
+	}
+	else if (lname === "") {
+		alert("Last Name Connot Be Empty");
+		isEmpty = true;
+	}
+	else if (age === "") {
+		alert("Age Connot Be Empty");
+		isEmpty = true;
+	}
+	return isEmpty;
+}
+
+// add Row
+const addHtmlTableRow = () => {
+	if (!checkEmptyInput()) {
+		let newRow = table.insertRow(table.length),
+			cell1 = newRow.insertCell(0),
+			cell2 = newRow.insertCell(1),
+			cell3 = newRow.insertCell(2),
+			fname = document.getElementById("fname").value,
+			lname = document.getElementById("lname").value,
+			age = document.getElementById("age").value;
+
+		cell1.innerHTML = fname;
+		cell2.innerHTML = lname;
+		cell3.innerHTML = age;
+
+		selectedRowToInput();
 	}
 }
 
-const agregarFila = () => {
+const selectedRowToInput = () => {
 
-	let tr = table.insertRow(-1);
-	let thead = table.rows[0].cells.length - 1
-	let i = 0;
-
-	while (i <= thead) {
-		let input = document.createElement("input")
-		input.type = "text"
-		// input.classList.add(`${table.rows[0].cells[i].innerHTML}`)
-		tr.insertCell(-1).appendChild(input)
-		i++
-	}
-
-	// inserting the delete button
-	let x = document.createElement("input")
-	tr.insertCell(-1).appendChild(x)
-	x.type = "button"
-	x.value = "eliminar"
-	x.onclick = function deleteSelectedRows(r) {
-		let i = this.parentNode.parentNode.rowIndex;
-		table.deleteRow(i);
-	}
-	
-	//creating edit button
-	let z = document.createElement("input")
-	tr.insertCell(-1).appendChild(z)
-	z.type = "button"
-	z.value = "editar"
-	z.classList.add("hide")
-	z.onclick = function deleteSelectedRows(r) {
-		let p = this.parentNode.parentNode.rowIndex;
-		let h = table.rows[p].querySelectorAll("[type=text]");
-		for (let i = 0; i < h.length; i++) {
-			h[i].disabled = false;
-			h[i].classList.remove("nombres")
-			h[i].classList.remove("apellidos")
-			h[i].classList.remove("edad")
-			z.classList.add("hide")
-			c.classList.remove("hide")
-		}
-	}
-
-	// inserting the save button
-	let c = document.createElement("input")
-	c.type = "button"
-	c.value = "guardar"
-	tr.insertCell(-1).appendChild(c)
-	c.onclick = function deleteSelectedRows(r) {
-
-		let p = this.parentNode.parentNode.rowIndex;
-		let h = table.rows[p].querySelectorAll("[type=text]");
-		for (let i = 0; i < h.length; i++) {
-			h[i].disabled = true;
-			h[i].classList.add("nombres")
-			h[i].classList.add("apellidos")
-			h[i].classList.add("edad")
-			c.classList.add("hide")
-			z.classList.remove("hide")
-		}
+	for (let i = 1; i < table.rows.length; i++) {
+		table.rows[i].onclick = function () {
+			rIndex = this.rowIndex;
+			document.getElementById("fname").value = this.cells[0].innerHTML;
+			document.getElementById("lname").value = this.cells[1].innerHTML;
+			document.getElementById("age").value = this.cells[2].innerHTML;
+		};
 	}
 }
 
-//adding listener to the add button
-addButton.addEventListener('click', agregarFila);
+selectedRowToInput();
 
-//making the request
-fetch('datos.json', {
-	method: "GET",
-})
-.then(response => response.json())
-.then(data => createTable(data))
+const editHtmlTbleSelectedRow = () => {
+	let fname = document.getElementById("fname").value;
+	let lname = document.getElementById("lname").value;
+	let age = document.getElementById("age").value;
+	if (!checkEmptyInput()) {
+		table.rows[rIndex].cells[0].innerHTML = fname;
+		table.rows[rIndex].cells[1].innerHTML = lname;
+		table.rows[rIndex].cells[2].innerHTML = age;
+	}
+}
+
+const removeSelectedRow = () => {
+	table.deleteRow(rIndex);
+	document.getElementById("fname").value = "";
+	document.getElementById("lname").value = "";
+	document.getElementById("age").value = "";
+}
