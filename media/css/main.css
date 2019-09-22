@@ -1,0 +1,41 @@
+body {
+  margin: 10px;
+  background: lightgray;
+}
+
+.addButton__container {
+  width: 85%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addButton__container--button {
+  border: transparent;
+  background-color: #315b96;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+  height: 35px;
+  width: 70px;
+  outline: transparent;
+}
+
+.hide {
+  display: none;
+}
+
+.nombres {
+  background: none;
+  border: 0;
+  outline: transparent;
+}
+.apellidos {
+  background: none;
+  border: 0;
+  outline: transparent;
+}
+.edad {
+  background: none;
+  border: 0;
+  outline: transparent;
+}
