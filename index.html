@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Mi app</title>
-	</head>
-	<link rel="stylesheet" type="text/css" href="media/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="media/css/main.css">
-	
-	<body>
 
-	<div class="tableData">
-		<table class="table" id="table">
-		</table>
+<head>
+	<title>Mi app</title>
+</head>
+<link rel="stylesheet" type="text/css" href="media/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="media/css/main.css">
+
+<body>
+	<div class="form__container">
+		<div class="tableData">
+			<h1>Registro de Estudiantes</h1>
+			<table class="table" id="table">
+			</table>
+		</div>
 	</div>
-	<div class="tab tab-2">
-		Nombre:<input type="text" name="fname" id="fname">
-		Apellidos:<input type="text" name="lname" id="lname">
-		Edad:<input type="number" name="age" id="age">
-		
-		<button onclick="addHtmlTableRow();">Agregar</button>
-		
-		<button onclick="editHtmlTbleSelectedRow();">Editar</button>
-		
-		<button onclick="removeSelectedRow();">Eliminar</button>
+
+	<div class="form">
+		<div class="form__edit">
+			<p>
+				Nombres:
+			</p>
+			<input type="text" name="fname" id="fname" onkeyup="validateName(this.value)">
+			<p>
+				Apellidos:
+			</p>
+			<input type="text" name="lname" id="lname" onkeyup="validatelName(this.value)">
+			<p>
+				Edad:
+			</p>
+			<input type="text" name="age" id="age" onkeyup="validateAge(this.value)"> <br>
+		</div>
+
+		<div class="form__button">
+
+			<input class="form__button--agregar" onclick="addHtmlTableRow();" type="button" value="Agregar" id="agregar">
+
+			<input class="form__button--editar" onclick="editHtmlTbleSelectedRow();" type="button" value="Editar" id="editar">
+
+			<input class="form__button--eliminar" onclick="removeSelectedRow();" type="button" value="Eliminar" id="eliminar">
+			
+		</div>
 	</div>
+
 </body>
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
 <script type="text/javascript" src="main.js"></script>
+
 </html>

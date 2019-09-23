@@ -42,10 +42,10 @@ let rIndex;
 
 // check the empty input
 const checkEmptyInput = () => {
-	let isEmpty = false,
-		fname = document.getElementById("fname").value,
-		lname = document.getElementById("lname").value,
-		age = document.getElementById("age").value;
+	let isEmpty = false;
+	let	fname = document.getElementById("fname").value;
+	let	lname = document.getElementById("lname").value;
+	let	age = document.getElementById("age").value;
 
 	if (fname === "") {
 		alert("First Name Connot Be Empty");
@@ -65,13 +65,13 @@ const checkEmptyInput = () => {
 // add Row
 const addHtmlTableRow = () => {
 	if (!checkEmptyInput()) {
-		let newRow = table.insertRow(table.length),
-			cell1 = newRow.insertCell(0),
-			cell2 = newRow.insertCell(1),
-			cell3 = newRow.insertCell(2),
-			fname = document.getElementById("fname").value,
-			lname = document.getElementById("lname").value,
-			age = document.getElementById("age").value;
+		let newRow = table.insertRow(table.length);
+		let cell1 = newRow.insertCell(0);
+		let cell2 = newRow.insertCell(1);
+		let cell3 = newRow.insertCell(2);
+		let fname = document.getElementById("fname").value;
+		let	lname = document.getElementById("lname").value;
+		let	age = document.getElementById("age").value;
 
 		cell1.innerHTML = fname;
 		cell2.innerHTML = lname;
@@ -111,4 +111,49 @@ const removeSelectedRow = () => {
 	document.getElementById("fname").value = "";
 	document.getElementById("lname").value = "";
 	document.getElementById("age").value = "";
+}
+
+const validateName = str => {
+	if (str.match(/^[a-zA-Z]{0,45}$/)) {
+
+		document.getElementById('fname').style.background = "transparent";
+		document.getElementById("agregar").disabled = false;
+		document.getElementById("editar").disabled = false;
+		document.getElementById("eliminar").disabled = false;
+	} else {
+		document.getElementById('fname').style.background = "lightcoral";
+		document.getElementById("agregar").disabled = true;
+		document.getElementById("editar").disabled = true;
+		document.getElementById("eliminar").disabled = true;
+	}
+}
+
+const validatelName = str => {
+	if (str.match(/^[a-zA-Z]{0,45}$/)) {
+
+		document.getElementById('lname').style.background = "transparent";
+		document.getElementById("agregar").disabled = false;
+		document.getElementById("editar").disabled = false;
+		document.getElementById("eliminar").disabled = false;
+	} else {
+		document.getElementById('lname').style.background = "lightcoral";
+		document.getElementById("agregar").disabled = true;
+		document.getElementById("editar").disabled = true;
+		document.getElementById("eliminar").disabled = true;
+	}
+}
+
+const validateAge = str => {
+	if (str.match(/^[\d]{0,3}$/)) {
+
+		document.getElementById('age').style.background = "transparent";
+		document.getElementById("agregar").disabled = false;
+		document.getElementById("editar").disabled = false;
+		document.getElementById("eliminar").disabled = false;
+	} else {
+		document.getElementById('age').style.background = "lightcoral";
+		document.getElementById("agregar").disabled = true;
+		document.getElementById("editar").disabled = true;
+		document.getElementById("eliminar").disabled = true;
+	}
 }

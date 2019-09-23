@@ -1,41 +1,85 @@
 body {
   margin: 10px;
-  background: lightgray;
+  background: linear-gradient(#d1eecc,#ecf4f3);
+  font-size: 16px;
 }
 
-.addButton__container {
-  width: 85%;
-  display: flex;
-  justify-content: flex-end;
+.tableData {
+  max-height: 300px;
+  width: 100%;
 }
 
-.addButton__container--button {
-  border: transparent;
-  background-color: #315b96;
-  border-radius: 10px;
-  color: black;
+.table {
   font-weight: bold;
+  border: 1px solid black;
+  border-top: 1px solid black;
+  margin: 10px 0;
+  max-height: 300px;
+}
+
+.table tbody {
+  border: 1px solid black;
+}
+.table tr:hover {
+  cursor: pointer;
+  border: 1px dotted black;
+}
+
+.tableData h1 {
+  margin-bottom: 20px;
+}
+
+.form__edit input {
+  background: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid black;
+  outline: transparent;
+}
+
+.form__edit p {
+  margin-top: 10px;
+  font-weight: bold
+}
+
+.form__button {
+  margin: 15px 0;
+}
+
+.form__button--agregar {
+  width: 90px;
   height: 35px;
-  width: 70px;
+  background: linear-gradient(#76dbd1, #57a99a);
+  border-radius: 15px;
+  color: black;
+  border: transparent;
+  font-weight: bold;
   outline: transparent;
 }
 
-.hide {
-  display: none;
+.form__button--editar {
+  width: 90px;
+  height: 35px;
+  background: linear-gradient(#76dbd1, #57a99a);
+  border-radius: 15px;
+  color: black;
+  border: transparent;
+  font-weight: bold;
+  outline: transparent;
 }
 
-.nombres {
-  background: none;
-  border: 0;
+.form__button--eliminar {
+  width: 90px;
+  height: 35px;
+  background: linear-gradient(#76dbd1, #57a99a);
+  border-radius: 15px;
+  color: black;
+  border: transparent;
+  font-weight: bold;
   outline: transparent;
 }
-.apellidos {
-  background: none;
-  border: 0;
-  outline: transparent;
-}
-.edad {
-  background: none;
-  border: 0;
-  outline: transparent;
+
+footer {
+  background: #ecf4f3;
 }
